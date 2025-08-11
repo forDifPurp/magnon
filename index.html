@@ -42,7 +42,7 @@
   header h1 {
     margin: 0 0 0 15px;
     font-weight: 700;
-    font-size: 2.2rem; /* увеличенный заголовок */
+    font-size: 2.2rem;
     color: #2A5E45;
   }
 
@@ -55,6 +55,7 @@
     width: 100%;
   }
 
+  /* Таблица */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -63,16 +64,19 @@
     border-radius: 8px;
     overflow: hidden;
   }
-  thead tr {
-    background-color: #2A5E45;
+  thead th {
+    font-weight: 700;
+    background-color: rgba(42, 94, 69, 0.8);
+    border: 2px solid #000;
     color: white;
+    white-space: nowrap;
+    padding: 12px 15px;
+    text-align: left;
   }
-  th, td {
+  tbody td {
     padding: 12px 15px;
     border: 1px solid #ddd;
-    text-align: left;
-    word-break: break-word;
-    color: #000; /* текст таблицы черный */
+    color: #000;
   }
   tbody tr:nth-child(even) {
     background-color: #f5f5f5;
