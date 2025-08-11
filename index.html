@@ -12,7 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
 <style>
-  /* Сброс и базовые стили */
   * {
     box-sizing: border-box;
   }
@@ -26,7 +25,6 @@
     flex-direction: column;
   }
 
-  /* Хедер */
   header {
     display: flex;
     align-items: center;
@@ -42,13 +40,12 @@
   header h1 {
     margin: 0 0 0 15px;
     font-weight: 700;
-    font-size: 3.5rem; /* максимально большой размер */
+    font-size: 3rem; /* чуть меньше, чтоб не вылазило */
     color: #2A5E45;
     line-height: 1;
     white-space: nowrap;
   }
 
-  /* Основной контент */
   main {
     flex-grow: 1;
     padding: 20px;
@@ -57,7 +54,6 @@
     width: 100%;
   }
 
-  /* Таблица */
   table {
     width: 100%;
     border-collapse: collapse;
@@ -68,13 +64,13 @@
   }
   thead th {
     font-weight: 700;
-    background-color: rgba(42, 94, 69, 0.5); /* прозрачность 50% */
+    background-color: rgba(42, 94, 69, 0.3); /* прозрачность 30% */
     border: 4px solid #000;
     border-radius: 0;
-    color: #000; /* чёрный текст */
+    color: #000; /* черный текст */
     white-space: nowrap;
-    padding: 12px 15px;
-    text-align: left;
+    padding: 18px 15px; /* увеличена высота */
+    text-align: center;
   }
   tbody td {
     padding: 12px 15px;
@@ -85,13 +81,11 @@
     background-color: #f5f5f5;
   }
 
-  /* Отступ снизу после таблицы */
   .table-container {
-    margin-bottom: 40px;
+    margin-bottom: 65px;
     overflow-x: auto;
   }
 
-  /* Кнопка «Скачать на смартфон» */
   #download-btn {
     position: fixed;
     right: 20px;
@@ -112,7 +106,6 @@
     background-color: #245038;
   }
 
-  /* Всплывающее меню */
   #download-menu {
     position: fixed;
     right: 20px;
@@ -141,7 +134,6 @@
     background-color: #e6f0e9;
   }
 
-  /* Адаптивность */
   @media (max-width: 600px) {
     header h1 {
       font-size: 2.2rem;
@@ -157,7 +149,7 @@
     thead th {
       white-space: nowrap;
       font-size: 14px;
-      padding: 10px 8px;
+      padding: 14px 8px; /* чуть меньше на мобилке */
     }
   }
 </style>
@@ -214,12 +206,10 @@
   </div>
 </main>
 
-<!-- Кнопка скачать на смартфон -->
 <button id="download-btn" aria-haspopup="true" aria-expanded="false" aria-controls="download-menu">
   Скачать на смартфон ▼
 </button>
 
-<!-- Меню скачивания -->
 <div id="download-menu" role="menu" aria-labelledby="download-btn">
   <button role="menuitem" onclick="downloadFile('files/magnonprograms.pdf')">PDF</button>
   <button role="menuitem" onclick="downloadFile('files/magnonprograms.png')">Картинка</button>
