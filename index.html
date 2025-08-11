@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Таблица заболеваний</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    background: #f9f9f9;
+  }
+  h1 {
+    text-align: center;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: left;
+  }
+  th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  .buttons {
+    text-align: center;
+    margin: 20px;
+  }
+  button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 12px 18px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+</head>
+<body>
+
+<h1>Таблица заболеваний</h1>
+
+<div id="table-container">
+<table id="disease-table">
+  <thead>
+    <tr>
+      <th>№ Программы</th>
+      <th>Заболевание</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td>1t</td><td>Алкоголизм</td></tr>
+    <tr><td>2t</td><td>Артериальная гипертензия</td></tr>
+    <tr><td>3t</td><td>Артериальная гипотония</td></tr>
+    <tr><td>4t</td><td>Астенический синдром</td></tr>
+    <tr><td>5t</td><td>Бронхиальная астма</td></tr>
+    <tr><td>6t</td><td>Гиперкинетический синдром</td></tr>
+    <tr><td>7t</td><td>Дискинезия желчевыводящих путей</td></tr>
+    <tr><td>8t</td><td>Диэнцефальный синдром</td></tr>
+    <tr><td>9t</td><td>ДЦП легкое течение</td></tr>
+    <tr><td>10t</td><td>Истинная детская экзема</td></tr>
+    <tr><td>11t</td><td>Нарушение овариально-менструального цикла</td></tr>
+    <tr><td>12t</td><td>Нарушение сна</td></tr>
+    <tr><td>13t</td><td>Натальная черепно-мозговая травма</td></tr>
+    <tr><td>14t</td><td>Нейродермит</td></tr>
+    <tr><td>15t</td><td>Обострение язвенной болезни ЖКТ</td></tr>
+    <tr><td>16t</td><td>Послеожоговые келлоидообразования</td></tr>
+    <tr><td>17t</td><td>Посттравматическая энцефалопатия</td></tr>
+    <tr><td>18t</td><td>Преходящее заикание</td></tr>
+    <tr><td>19t</td><td>Псориаз</td></tr>
+    <tr><td>20t</td><td>Ревматоидный артрит</td></tr>
+    <tr><td>21t</td><td>Резидуальная церебральная недостаточность</td></tr>
+    <tr><td>22t</td><td>Синдром навязчивых движений</td></tr>
+    <tr><td>23t</td><td>Синдром умственного и физического переутомления</td></tr>
+    <tr><td>24t</td><td>Смешанные неврозы</td></tr>
+    <tr><td>25t</td><td>Хронический бронхит</td></tr>
+    <tr><td>26t</td><td>Хронический панкреатит</td></tr>
+    <tr><td>27t</td><td>Хронический холецисто-холангит</td></tr>
+    <tr><td>28t</td><td>Церебральный атеросклероз</td></tr>
+    <tr><td>29t</td><td>Энурез, энкопрез</td></tr>
+    <tr><td>30t</td><td>Язвенная болезнь усиление репарации</td></tr>
+  </tbody>
+</table>
+</div>
+
+<div class="buttons">
+  <button id="download-png">Скачать как изображение</button>
+  <button id="download-pdf">Скачать как PDF</button>
+</div>
+
+<!-- Подключаем библиотеки -->
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+  const table = document.getElementById('table-container');
+
+  document.getElementById('download-png').addEventListener('click', () => {
+    html2canvas(table).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'table.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  });
+
+  document.getElementById('download-pdf').addEventListener('click', () => {
+    html2canvas(table).then(canvas => {
+      const imgData = canvas.toDataURL('image/png');
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF('p', 'pt', 'a4');
+      
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save('table.pdf');
+    });
+  });
+</script>
+
+</body>
+</html>
